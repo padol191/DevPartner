@@ -3,8 +3,11 @@ import Layout from "../components/layout";
 import axios from "axios";
 import DashboardLayout from '../components/dashboardLayout';
 import Link from 'next/link'
-function Profile() {
+import TabsRender from "../components/tab";
+function Profile({color}) {
   const [user, setUser] = useState(null);
+  const [openTab, setOpenTab] =useState(1);
+
   useEffect(() => {
     const fetchData = async () => {
       let token = localStorage.getItem("token");
@@ -24,7 +27,58 @@ function Profile() {
   }, []);
   return (
     <>
-      {user && (
+
+<div className="flex flex-wrap">
+        <div className="w-full">
+          <ul
+            className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row"
+            role="tablist"
+          >
+            <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+              <a
+                className={
+                  "text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
+                  (openTab === 1
+                    ? "text-white bg-" + "blue" + "-600"
+                    : "text-" + "black" + "-600 bg-white")
+                }
+                onClick={e => {
+                  e.preventDefault();
+                  setOpenTab(1);
+                }}
+                data-toggle="tab"
+                href="#link1"
+                role="tablist"
+              >
+                <i className="fas fa-space-shuttle text-base mr-1"></i> Profile
+              </a>
+            </li>
+            <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+              <a
+                className={
+                  "text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
+                  (openTab === 2
+                    ? "text-white bg-" + "blue" + "-600"
+                    : "text-" + "black" + "-600 bg-white")
+                }
+                onClick={e => {
+                  e.preventDefault();
+                  setOpenTab(2);
+                }}
+                data-toggle="tab"
+                href="#link2"
+                role="tablist"
+              >
+                <i className="fas fa-cog text-base mr-1"></i>  Settings
+              </a>
+            </li>
+           
+          </ul>
+          <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+            <div className="px-4 py-5 flex-auto">
+              <div className="tab-content tab-space">
+                <div className={openTab === 1 ? "block" : "hidden"} id="link1">
+                {user && (
         <>
           {/* Card is full width. Use in 8 col grid for best view. */}
           {/* Card code block start */}
@@ -43,7 +97,7 @@ function Profile() {
                   {user.email}
                 </p>
                 <p className="mb-6 text-sm text-center px-20 text-black-700 dark:text-black">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                 {user.bio}
                 </p>
                 <button className="bg-white font-medium transition duration-150 ease-in-out hover:bg-gray-200 rounded text-gray-800 px-6 py-2 text-sm border border-gray-300 dark:border-gray-200 focus:outline-none">
                   <Link href="/editProfile">Edit Profile</Link>
@@ -88,7 +142,7 @@ function Profile() {
                       Github
                     </p>
                     <p className="text-lg text-gray-700 dark:text-gray-400">
-                      Darsh09
+                      {user.github}
                     </p>
                   </div>
                 </div>
@@ -98,7 +152,7 @@ function Profile() {
                       Stack Overflow
                     </p>
                     <p className="text-lg text-gray-700 dark:text-gray-400">
-                      Darsh09
+                      {user.stackoverflow}
                     </p>
                   </div>
                 </div>
@@ -108,7 +162,7 @@ function Profile() {
                       LinkedIn
                     </p>
                     <p className="text-lg text-gray-700 dark:text-gray-400">
-                      Darsh09
+                    {user.linkedin}
                     </p>
                   </div>
                 </div>
@@ -119,6 +173,27 @@ function Profile() {
           {/* Card code block end */}
       </> 
       )}
+                </div>
+                <div className={openTab === 2 ? "block" : "hidden"} id="link2">
+                  <p>
+                    Completely synergize resource taxing relationships via
+                    premier niche markets. Professionally cultivate one-to-one
+                    customer service with robust ideas.
+                    <br />
+                    <br />
+                    Dynamically innovate resource-leveling customer service for
+                    state of the art customer service.
+                  </p>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+     
+      
     </>
   );
 }
