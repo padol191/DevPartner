@@ -4,6 +4,7 @@ import axios from "axios";
 import DashboardLayout from '../components/dashboardLayout';
 import Link from 'next/link'
 import TabsRender from "../components/tab";
+import Showprojects from "../components/Showprojects";
 function Profile({color}) {
   const [user, setUser] = useState(null);
   const [openTab, setOpenTab] =useState(1);
@@ -175,15 +176,7 @@ function Profile({color}) {
       )}
                 </div>
                 <div className={openTab === 2 ? "block" : "hidden"} id="link2">
-                  <p>
-                    Completely synergize resource taxing relationships via
-                    premier niche markets. Professionally cultivate one-to-one
-                    customer service with robust ideas.
-                    <br />
-                    <br />
-                    Dynamically innovate resource-leveling customer service for
-                    state of the art customer service.
-                  </p>
+                <Showprojects/>
                 </div>
                 
               </div>
