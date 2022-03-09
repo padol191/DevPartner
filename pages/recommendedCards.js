@@ -28,12 +28,12 @@ return (
   {cards && (
 
   
-<div className=" m-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-6" >
+<div className=" m-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-11" >
 
 { cards.map((card,i) => (
 
 			<div class="flex flex-col items-center justify-center bg-white p-4 shadow rounded-lg">
-				<div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
+				<div class="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-20 w-20">
 					<img src={card.avatar}
 						 alt=""
 						 class="h-full w-full"></img>
