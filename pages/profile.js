@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Layout from "../components/layout";
 import axios from "axios";
+import DashboardLayout from '../components/dashboardLayout';
 function Profile() {
   const [user, setUser] = useState(null);
   useEffect(() => {
@@ -23,7 +24,7 @@ function Profile() {
   return (
     <>
       {user && (
-        <Layout>
+        <>
           {/* Card is full width. Use in 8 col grid for best view. */}
           {/* Card code block start */}
           <div className="bg-white h-[80vh] shadow rounded xl:flex lg:flex w-full">
@@ -83,9 +84,13 @@ function Profile() {
           </div>
 
           {/* Card code block end */}
-        </Layout>
+      </> 
       )}
     </>
   );
 }
 export default Profile;
+
+Profile.getLayout = function getLayout(page) {
+  return <DashboardLayout>{page}</DashboardLayout>;
+};
