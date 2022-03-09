@@ -39,15 +39,16 @@ function organization() {
    <div class="flow-root">
         <ul role="list" class="w-[800px] divide-y divide-gray-200 dark:divide-gray-700">
         {userPosts.map((userPost, i) => (
+          
             <li class="py-3 sm:py-4">
                 <div class="flex items-center space-x-4">
                     <div class="flex-shrink-0">
                         <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-1.jpg" alt="Neil image"></img>
                     </div>
                     <div class="flex-1 min-w-0">
-                        <a href={"/projects/"+userPost.post.id} class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                        <Link href={`/projects/${userPost.post._id}`} class="text-sm font-medium text-gray-900 truncate dark:text-white">
                             {userPost.post.title}
-                        </a>
+                        </Link>
                         <p class="text-sm text-gray-500 truncate dark:text-gray-400">
                             3 Members
                         </p>
