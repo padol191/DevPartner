@@ -12,8 +12,8 @@ export default function index() {
   };
 
   return (
-    <div>
-      <div className="rounded-r bg-gray-900 xl:hidden flex justify-between w-full p-6 items-center ">
+    <div className="h-[100vh]">
+      <div className="rounded-r bg-gray-900 xl:hidden flex justify-between h-full w-full p-6 items-center ">
         <div className="flex justify-between  items-center space-x-3">
           <svg
             width={34}

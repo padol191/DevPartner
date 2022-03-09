@@ -3,7 +3,7 @@ import Sidebar from "./sidebar";
 
 const DashboardLayout = ({ children }) => {
   return (
-    <div>
+    <div className="flex flex-1">
       <Sidebar></Sidebar>
       <main className="py-3">{children}</main>
     </div>
