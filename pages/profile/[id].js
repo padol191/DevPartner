@@ -47,7 +47,7 @@ const Id = () => {
                 <p className="mb-6 text-lg text-gray-700 dark:text-gray-500">
                   {user.email}
                 </p>
-                <p className="mb-6 text-sm text-center px-20 text-black-700 dark:text-black">
+                <p className="mb-6 text-lg text-center px-20 text-black-700 dark:text-black">
                   Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                 </p>
                 {/* <button className="bg-white font-medium transition duration-150 ease-in-out hover:bg-gray-200 rounded text-gray-800 px-6 py-2 text-sm border border-gray-300 dark:border-gray-200 focus:outline-none">
@@ -119,13 +119,21 @@ const Id = () => {
                 </div>
               </div>
               <div className=' flex flex-col justify-around items-center w-[80%] p-3'>
-                <h1 className='text-3xl'>Skills</h1>
+                <h1 className='text-3xl mb-4 self-start'>Skills</h1>
                 <div className='flex flex-wrap justify-left w-[100%] m-2'>
                     <span className='bg-slate-200 text-lg px-2 py-2 rounded-sm m-2'>React</span>
                     <span className='bg-slate-200 text-lg px-2 py-2 rounded-sm m-2'>Express</span>
                     <span className='bg-slate-200 text-lg px-2 py-2 rounded-sm m-2'>Mongo</span>
                 </div>
+              </div>
+              <div className=' flex flex-col justify-around items-center w-[80%] p-3'>
+                <h1 className='text-3xl mb-4 self-start'>Resume</h1>
+                <div className='flex flex-wrap justify-left w-[100%] m-2'>
+                    <Link href="" target = "_blank">
+                        <span className=''>View resume</span>
+                    </Link>
                 </div>
+              </div>
             </div>
             </div>
           </>
