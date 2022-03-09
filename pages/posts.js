@@ -5,6 +5,8 @@ import DashboardLayout from "../components/dashboardLayout";
 function posts(page) {
   const [userPosts, setUserPosts] = useState(null);
   const [users, setUser] = useState(null);
+  const [comment, setComment] = useState(null);
+  const [updt, setUpdt] = useState(0);
   useEffect(() => {
     const fetchData = async () => {
       let token = localStorage.getItem("token");
@@ -25,6 +27,24 @@ function posts(page) {
     };
     fetchData();
   }, []);
+  useEffect(() => {
+    console.log("comment updated")
+  }, [updt]);
+
+  function saveComment(id,e){
+    let token = localStorage.getItem("token");
+    let config = {
+      headers: {
+        "X-Auth-token": token,
+      },
+    };
+    axios.post(`http://localhost:5000/api/posts/comment/${id}`, {
+        text:comment
+    },config)
+    setUpdt(updt+1)
+}
+
+
 
   return (
     <>
@@ -35,21 +55,18 @@ function posts(page) {
               <div class="flex bg-white shadow-sm rounded-lg mx-4 md:mt-6 md:mx-auto max-w-md md:max-w-xl">
                 <div class="flex items-start px-4 py-6">
                   <img
-                    class="w-12 h-12 rounded-full object-cover mr-4 shadow"
+                    class="max-w-[48px] rounded-full object-cover mr-4 shadow"
                     src={userPost.avatar}
                     alt="avatar"
                   ></img>
-                  <div class="">
+                  <div class="flex flex-col justify-between">
                     <div class="flex items-center justify-between">
-                      <h2 class="text-lg font-semibold text-gray-900 -mt-1">
-                        {userPost.name}
-                      </h2>
+                      <h2 class="font-bold text-lg text-gray-700 -mt-1">{userPost.title}</h2>
                       <small class="text-sm text-gray-700">22h ago</small>
                     </div>
-                    <p class="text-gray-700">Joined 12 SEP 2012. </p>
-                    <p class="mt-3 text-gray-700 text-sm">{userPost.title}</p>
-                    <p class="mt-3 text-gray-700 text-sm">{userPost.desc}</p>
-                    <div class="mt-4 flex items-center">
+                    <p class="text-gray-500 text-sm">{userPost.name}</p>
+                    <p class="my-3 text-gray-700 text-sm">{userPost.desc}</p>
+                    <div class="mb-3 flex items-center">
                       <div class="flex text-gray-700 text-sm mr-3">
                         <svg
                           fill="none"
@@ -82,24 +99,19 @@ function posts(page) {
                         </svg>
                         <span>{userPost.comments.length}</span>
                       </div>
-                      <div class="flex text-gray-700 text-sm mr-4">
-                        <svg
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          class="w-4 h-4 mr-1"
-                          stroke="currentColor"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
-                          />
-                        </svg>
-                        <span>share</span>
-                      </div>
+                     
                     </div>
-
+                    {/* Comment Input Field */}
+                    <div class="flex space-x-3">
+                        <textarea onChange={(e)=>setComment(e.target.value)} rows="1" class="appearance-none flex-grow-[1] block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-2 mb-0 text-xs leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="Enter Your Comment"></textarea>
+                        {console.log(userPost)}
+                        <button onClick={()=>saveComment(userPost._id)} class="flex-grow-[3] px-3 bg-slate-700 text-white rounded">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 rotate-90" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                        </svg>    
+                        </button>
+                    </div>
+                    {userPost.comments && 
                     <div class="mt-6">
                       {userPost.comments.map((comment, i) => (
                         <div class="flex items-start p-4">
@@ -118,13 +130,13 @@ function posts(page) {
                               </small>
                             </div>
                             <p class="mt-1 text-gray-700 text-sm">
-                              Lorem ipsum dolor sit amet consectetur adipisicing
-                              elit. Assumenda, mollitia.
+                             {comment.text}
                             </p>
                           </div>
                         </div>
                       ))}
                     </div>
+                    }
                   </div>
                 </div>
               </div>
