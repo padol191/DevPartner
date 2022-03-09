@@ -1,9 +1,64 @@
-import React from "react";
-import DashboardLayout from "../components/dashboardLayout";
+import { useEffect, useState } from "react";
+import Layout from "../components/layout";
+import axios from "axios";
+import DashboardLayout from '../components/dashboardLayout';
+import Link from 'next/link'
 
 function editProfile() {
+
+  const [user, setUser] = useState(null);
+  const [name,setName]=useState("");
+  const [skill,setSkill]=useState([]);
+  const [number,setNumber]=useState(0);
+  const [github,setGithub]=useState("");
+  const [stackoverflow,setStackoverflow]=useState("");
+  const [linkedin,setLinkedin]=useState("");
+  const [res,setRes]=useState(0);
+  useEffect(() => {
+    const fetchData = async () => {
+      let token = localStorage.getItem("token");
+      let config = {
+        headers: {
+          "X-Auth-token": token,
+        },
+      };
+      const login = await axios.get(
+        "http://localhost:5000/api/auth/login",
+        config
+      );
+      console.log(login.data);
+      setUser(login.data);
+      setGithub(login.data.github);
+      setSkill(login.data.skill);
+      setLinkedin(login.data.linkedin);
+      setStackoverflow(login.data.stackoverflow);
+     
+    };
+    fetchData();
+  }, []);
+
+  function saveChanges(){
+   const userDetails={
+       skills:skill,
+       github:github,
+       linkedin:linkedin,
+       stackoverflow:stackoverflow
+    }
+    let token = localStorage.getItem("token");
+    let config = {
+      headers: {
+        "X-Auth-token": token,
+      },
+    };
+    axios.post('http://localhost:5000/api/profile/update', userDetails,config)
+    .then(response => alert("Updated Successully"));
+
+  }
+ 
+
   return (
     <>
+    {user && (
       <div className="flex items-center justify-center">
         <div class="xl:w-10/12 w-full px-8">
           <div class="xl:px-24">
@@ -26,14 +81,15 @@ function editProfile() {
                       class="text-sm leading-none text-gray-800"
                       id="firstName"
                     >
-                      First name
+                      Name
                     </label>
                     <input
                       type="name"
                       tabindex="0"
                       class="w-full p-3 mt-3 bg-gray-100 border rounded border-gray-200 focus:outline-none focus:border-gray-600 text-sm font-medium leading-none text-gray-800"
                       aria-labelledby="firstName"
-                      placeholder="John"
+                      placeholder={user.name}
+                      onChange={(e)=>setName(e.target.value)}
                     />
                   </div>
                   <div class="md:w-64 md:ml-12 md:mt-0 mt-4">
@@ -41,14 +97,15 @@ function editProfile() {
                       class="text-sm leading-none text-gray-800"
                       id="lastName"
                     >
-                      Last name
+                      Tech Stack
                     </label>
                     <input
                       type="name"
                       tabindex="0"
                       class="w-full p-3 mt-3 bg-gray-100 border rounded border-gray-200 focus:outline-none focus:border-gray-600 text-sm font-medium leading-none text-gray-800"
                       aria-labelledby="lastName"
-                      placeholder="Doe"
+                      placeholder={user.skills}
+                      onChange={(e)=>setSkill(e.target.value)}
                     />
                   </div>
                 </div>
@@ -58,14 +115,15 @@ function editProfile() {
                       class="text-sm leading-none text-gray-800"
                       id="emailAddress"
                     >
-                      Email address
+                      Password
                     </label>
                     <input
                       type="email"
                       tabindex="0"
                       class="w-full p-3 mt-3 bg-gray-100 border rounded border-gray-200 focus:outline-none focus:border-gray-600 text-sm font-medium leading-none text-gray-800"
                       aria-labelledby="emailAddress"
-                      placeholder="youremail@example.com"
+                      placeholder={user.password}
+                      onChange={(e)=>setPassword(e.target.value)}
                     />
                   </div>
                   <div class="md:w-64 md:ml-12 md:mt-0 mt-4">
@@ -80,7 +138,8 @@ function editProfile() {
                       tabindex="0"
                       class="w-full p-3 mt-3 bg-gray-100 border rounded border-gray-200 focus:outline-none focus:border-gray-600 text-sm font-medium leading-none text-gray-800"
                       aria-labelledby="phone"
-                      placeholder="123-1234567"
+                      placeholder={user.number}
+                      onChange={(e)=>setNumber(e.target.value)}
                     />
                   </div>
                 </div>
@@ -90,7 +149,7 @@ function editProfile() {
               <div class="w-80">
                 <div class="flex items-center">
                   <h1 class="text-2xl font-medium pr-2 leading-5 text-gray-800">
-                    Security
+                    Socials
                   </h1>
                 </div>
                 {/* <p class="mt-4 text-sm leading-5 text-gray-600">
@@ -105,14 +164,15 @@ function editProfile() {
                       class="text-sm leading-none text-gray-800"
                       id="password"
                     >
-                      Password
+                     Github 
                     </label>
                     <input
                       type="name"
                       tabindex="0"
                       class="w-full p-3 mt-3 bg-gray-100 border rounded border-gray-200 focus:outline-none focus:border-gray-600 text-sm font-medium leading-none text-gray-800"
                       aria-labelledby="password"
-                      placeholder="Enter your password"
+                      placeholder={user.github}
+                      onChange={(e)=>setGithub(e.target.value)}
                     />
                   </div>
                   <div class="md:w-64 md:ml-12 md:mt-0 mt-4">
@@ -120,14 +180,15 @@ function editProfile() {
                       class="text-sm leading-none text-gray-800"
                       id="securityCode"
                     >
-                      Security Code
+                      Linkedin
                     </label>
                     <input
                       type="name"
                       tabindex="0"
                       class="w-full p-3 mt-3 bg-gray-100 border rounded border-gray-200 focus:outline-none focus:border-gray-600 text-sm font-medium leading-none text-gray-800"
                       aria-labelledby="securityCode"
-                      placeholder="Enter your security code"
+                      placeholder={user.linkedin}
+                      onChange={(e)=>setLinkedin(e.target.value)}
                     />
                   </div>
                 </div>
@@ -137,14 +198,15 @@ function editProfile() {
                       class="text-sm leading-none text-gray-800"
                       id="recoverEmail"
                     >
-                      Recovery Email address
+                      Stackoverflow
                     </label>
                     <input
                       type="name"
                       tabindex="0"
                       class="w-full p-3 mt-3 bg-gray-100 border rounded border-gray-200 focus:outline-none focus:border-gray-600 text-sm font-medium leading-none text-gray-800"
                       aria-labelledby="recoveryEmail"
-                      placeholder="Your recovery email"
+                      placeholder={user.stackoverflow}
+                      onChange={(e)=>setStackoverflow(e.target.value)}
                     />
                   </div>
                   <div class="md:w-64 md:ml-12 md:mt-0 mt-4">
@@ -154,20 +216,17 @@ function editProfile() {
                     >
                       Alternate phone number
                     </label>
-                    <input
-                      type="name"
-                      tabindex="0"
-                      class="w-full p-3 mt-3 bg-gray-100 border rounded border-gray-200 focus:outline-none focus:border-gray-600 text-sm font-medium leading-none text-gray-800"
-                      aria-labelledby="altPhone"
-                      placeholder="Your alternate phone number"
-                    />
+                  
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <button onClick={saveChanges} className="mx-2 my-2 bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-6 py-2 text-xs">Save Changes</button>
         </div>
+        
       </div>
+    )}
     </>
   );
 }
