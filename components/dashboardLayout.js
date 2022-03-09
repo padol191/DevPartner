@@ -10,7 +10,7 @@ const DashboardLayout = ({ children }) => {
       <Sidebar></Sidebar>
       <div className="flex flex-col h-[100vh] w-[100vw] justify-between">
         <Navbar/>
-        <main className="py-3 w-full flex justify-center items-center">{children}</main>
+        <main className="py-3 w-full flex flex-grow justify-center">{children}</main>
         <Footer />
       </div>
     </div>
