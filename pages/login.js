@@ -29,7 +29,7 @@ export default function Login() {
       console.log(token);
       localStorage.setItem("token", token);
 
-      router.push("/dashboard");
+      router.push("/posts");
     } catch (error) {
       console.log(error.response.data);
       Object.entries(error.response.data.errors).forEach(([key, value]) => {
