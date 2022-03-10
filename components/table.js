@@ -1,5 +1,75 @@
 import React from "react";
+import axios from "axios";
+import { useEffect, useState} from "react";
+import {useParams} from 'react-router-dom'
+
 function Index() {
+  const [tasks, setTasks] = useState([]);
+  
+  useEffect(() => {
+    const url=window.location.href;
+  const id = url.split("/").pop();
+    console.log(id);
+    const fetchData = async () => {
+      let token = localStorage.getItem("token");
+      let config = {
+        headers: {
+          "X-Auth-token": token,
+        },
+      };
+      const login = await axios.post(
+        "http://localhost:5000/api/posts/gettask",
+        {  projectid:id}
+        ,
+        config
+      );
+      console.log(login.data);
+      setTasks(login.data);
+    };
+    fetchData();
+  }, []);
+  
+function addTask(){
+  
+  const fetchData = async () => {
+  
+    let token = localStorage.getItem("token");
+    let config = {
+      headers: {
+        "X-Auth-token": token,
+      },
+    };
+    const url=window.location.href;
+    const id = url.split("/").pop();
+    console.log(id);
+   
+    const login = await axios.post("http://localhost:5000/api/posts/task",{
+     projectid:id,
+     task:"Create React App",
+     status:"inprogress"
+    }, config).then(alert("success"));
+    
+    
+    
+    
+  };
+  fetchData();
+}
+
+const complete = async()=>{
+  const url=window.location.href;
+  const id = url.split("/").pop();
+  let token = localStorage.getItem("token");
+  let config = {
+    headers: {
+      "X-Auth-token": token,
+    },
+  };
+  await axios.post("http://localhost:5000/api/posts/task",{
+     projectid:id,
+     status:"done"
+    }, config).then(alert("success"));
+  }
   return (
     <div>
       {/* Component Start */}
@@ -7,6 +77,7 @@ function Index() {
         <div className="px-10 mt-6">
           <h1 className="text-2xl font-bold">Team Project Board</h1>
         </div>
+        
         <div className="flex flex-grow px-10 mt-4 space-x-6 overflow-auto">
           <div className="flex flex-col flex-shrink-0 w-[30vw]">
             <div className="flex items-center flex-shrink-0 h-10 px-2">
@@ -14,7 +85,7 @@ function Index() {
               <span className="flex items-center justify-center w-5 h-5 ml-2 text-sm font-semibold text-indigo-500 bg-white rounded bg-opacity-30">
                 1
               </span>
-              <button className="flex items-center justify-center w-6 h-6 ml-auto text-indigo-500 rounded hover:bg-indigo-500 hover:text-indigo-100">
+              <button onClick={addTask} className="flex items-center justify-center w-6 h-6 ml-auto text-indigo-500 rounded hover:bg-indigo-500 hover:text-indigo-100">
                 <svg
                   className="w-5 h-5"
                   fill="none"
@@ -30,10 +101,14 @@ function Index() {
                 </svg>
               </button>
             </div>
+            {console.log(tasks.kanban)}
+            {tasks &&
+            <div>
+            {tasks.map((Task, i) => (
             <div className="flex flex-col pb-2 overflow-auto">
               <div
                 className="relative flex flex-col items-start w-full p-4 mt-3 bg-white shadow-md rounded-lg cursor-pointer bg-opacity-90 group hover:bg-opacity-100"
-                draggable="true"
+                draggable="true" onClick={complete}
               >
                 <button className="absolute top-0 right-0 flex items-center justify-center hidden w-5 h-5 mt-3 mr-2 text-gray-500 rounded hover:bg-gray-200 hover:text-gray-700 group-hover:flex">
                   <svg
@@ -49,8 +124,7 @@ function Index() {
                   Design
                 </span>
                 <h4 className="mt-3 text-sm font-medium">
-                  This is the title of the card for the thing that needs to be
-                  done.
+                 {Task.task}
                 </h4>
                 <div className="flex items-center w-full mt-3 text-xs font-medium text-gray-400">
                   <div className="flex items-center">
@@ -104,7 +178,8 @@ function Index() {
                   />
                 </div>
               </div>
-            </div>
+            </div>))}
+            </div>}
           </div>
           <div className="flex flex-col flex-shrink-0 w-[30vw]">
             <div className="flex items-center flex-shrink-0 h-10 px-2">
