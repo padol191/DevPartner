@@ -50,7 +50,7 @@ function editProfile() {
     };
     axios
       .post("http://localhost:5000/api/profile/update", userDetails, config)
-      .then((response) => alert("Updated Successully"));
+      
   }
 
   return (

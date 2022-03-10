@@ -23,9 +23,7 @@ function createProject(page) {
             title:projectName,
             desc:desc,
             stack:skills
-        },config).then(alert("successfu")).catch(err => {
-            console.log(err)
-        })
+        },config)
         
 }
     return(
