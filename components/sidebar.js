@@ -120,7 +120,7 @@ export default function index() {
               fill="white"
             />
           </svg>
-          <p className="text-2xl leading-6 text-white">OvonRueden</p>
+          <p className="text-2xl leading-6 text-white">DevFinder</p>
         </div>
         <div className="mt-6 flex flex-col justify-start items-center  pl-4 w-full border-gray-600 border-b space-y-3 pb-5 ">
           <button className="flex jusitfy-start items-center space-x-6 w-full  focus:outline-none  focus:text-indigo-400  text-white rounded ">

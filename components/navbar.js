@@ -108,7 +108,7 @@ export default function Navbar() {
                 />
               </svg>
               <h1 className=" font-normal text-2xl leading-6 text-gray-800">
-                Hacks
+                DevFinder
               </h1>
             </div>
           </Link>
