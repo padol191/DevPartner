@@ -21,7 +21,7 @@ const Tabs = ({ color }) => {
                     ? `text-white bg-${color}-600`
                     : "text-" + color + "-600 bg-white")
                 }
-                onClick={e => {
+                onClick={(e) => {
                   e.preventDefault();
                   setOpenTab(1);
                 }}
@@ -29,7 +29,8 @@ const Tabs = ({ color }) => {
                 href="#link1"
                 role="tablist"
               >
-                <i className="fas fa-space-shuttle text-base mr-1"></i> Profile
+                <i className="fas fa-space-shuttle text-base mr-1"></i>{" "}
+                Real-time collaboration
               </a>
             </li>
             <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
@@ -40,7 +41,7 @@ const Tabs = ({ color }) => {
                     ? "text-white bg-" + color + "-600"
                     : "text-" + color + "-600 bg-white")
                 }
-                onClick={e => {
+                onClick={(e) => {
                   e.preventDefault();
                   setOpenTab(2);
                 }}
@@ -48,10 +49,10 @@ const Tabs = ({ color }) => {
                 href="#link2"
                 role="tablist"
               >
-                <i className="fas fa-cog text-base mr-1"></i>  Kanban
+                <i className="fas fa-cog text-base mr-1"></i> Kanban
               </a>
             </li>
-            <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+            {/* <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
               <a
                 className={
                   "text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
@@ -69,20 +70,20 @@ const Tabs = ({ color }) => {
               >
                 <i className="fas fa-briefcase text-base mr-1"></i>  Files
               </a>
-            </li>
+            </li> */}
           </ul>
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
             <div className="px-4 py-5 flex-auto">
               <div className="tab-content tab-space">
                 <div className={openTab === 1 ? "block" : "hidden"} id="link1">
-                  <Documentation/>
+                  <Documentation />
                 </div>
                 <div className={openTab === 2 ? "block" : "hidden"} id="link2">
                   <Kanban />
                 </div>
-                <div className={openTab === 3 ? "block" : "hidden"} id="link3">
+                {/* <div className={openTab === 3 ? "block" : "hidden"} id="link3">
                   <Files/>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
