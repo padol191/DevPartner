@@ -54,7 +54,7 @@ function posts(page) {
       {userPosts && users && (
         <div class="flex justify-around w-full">
           <div class="overflow-scroll w-[75%] h-[75vh] bg-slate-50">
-            <Link href="/editProfile">
+            <Link href="/createProject">
               <button className="block mx-auto bg-blue-500 rounded w-[55%] h-12">
                 Create Project
               </button>
@@ -145,7 +145,7 @@ function posts(page) {
                             <div class="">
                               <div class="flex items-center justify-between">
                                 <h2 class="text-lg  font-semibold text-gray-900">
-                                  Chaitanya Padol
+                                  {comment.name}
                                 </h2>
                                 <small class="text-sm text-gray-700">
                                   22h ago

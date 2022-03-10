@@ -206,14 +206,7 @@ function editProfile() {
                         onChange={(e) => setStackoverflow(e.target.value)}
                       />
                     </div>
-                    <div class="md:w-64 md:ml-12 md:mt-0 mt-4">
-                      <label
-                        class="text-sm leading-none text-gray-800"
-                        id="altPhone"
-                      >
-                        Alternate phone number
-                      </label>
-                    </div>
+                    <div class="md:w-64 md:ml-12 md:mt-0 mt-4"></div>
                   </div>
                 </div>
               </div>

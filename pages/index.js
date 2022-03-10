@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Layout from "../components/layout";
 export default function Home() {
   return (
@@ -90,12 +91,14 @@ export default function Home() {
                 Are you ready to start your adventure and start building the
                 next greatest project on the market?
               </p>
-              <a
-                href="#_"
-                className="relative self-start inline-block w-auto px-8 py-4 mx-auto mt-0 text-base font-bold text-white bg-indigo-600 border-t border-gray-200 rounded-md shadow-xl sm:mt-1 fold-bold lg:mx-0"
-              >
-                Signup Today!
-              </a>
+              <Link href="/register">
+                <a
+                  href="#_"
+                  className="relative self-start inline-block w-auto px-8 py-4 mx-auto mt-0 text-base font-bold text-white bg-indigo-600 border-t border-gray-200 rounded-md shadow-xl sm:mt-1 fold-bold lg:mx-0"
+                >
+                  Signup Today!
+                </a>
+              </Link>
               {/* Integrates with section */}
               <div className="flex-col hidden mt-12 sm:flex lg:mt-24">
                 <p className="mb-4 text-sm font-medium tracking-widest text-gray-500 uppercase">

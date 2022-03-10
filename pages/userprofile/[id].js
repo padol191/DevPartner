@@ -122,9 +122,6 @@ function Profile({ color }) {
                             <p className="mb-6 text-sm text-center px-20 text-black-700 dark:text-black">
                               {user.bio}
                             </p>
-                            <button className="bg-white font-medium transition duration-150 ease-in-out hover:bg-gray-200 rounded text-gray-800 px-6 py-2 text-sm border border-gray-300 dark:border-gray-200 focus:outline-none">
-                              <Link href="/editProfile">Edit Profile</Link>
-                            </button>
                           </div>
                         </div>
                         <div className="xl:w-3/5 lg:w-3/5 px-6 py-8 flex justify-around items-center">
