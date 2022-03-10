@@ -3,7 +3,7 @@ import React from 'react';
 const Documentation = () => {
     return (
         <div>
-            <iframe className='w-[80vw]' src="https://docs.google.com/document/d/e/2PACX-1vTpfNO5BdJGmHtuSL3RaiQlw_n-inGEo336eC3qT78zAt_NmBlLv-2UWKyNln2Kevl-uErd71xiP7WN/pub?embedded=true"></iframe>
+            <iframe className='h-[60vh] w-[80vw]' src="https://code-n-collab.netlify.app/collaborate?room=4ffe8c05-8101-4017-9298-d606026278cbcollab&name=padol"></iframe>
         </div>
     );
 }
