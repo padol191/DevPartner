@@ -24,7 +24,7 @@ function Showprojects() {
     <>
       {userPosts && (
         <div class="flex justify-around w-full">
-          <div class="overflow-scroll w-[60vw] bg-slate-300 overflow-scroll h-[60vh]">
+          <div class="overflow-scroll w-[60vw] bg-slate-50 overflow-scroll h-[60vh]">
             {userPosts.map((userPost, i) => (
               <div class="flex bg-white shadow-sm rounded-lg mx-4 md:mt-6 md:mx-auto w-[80%] ">
                 <div class="flex items-start px-4 py-6">

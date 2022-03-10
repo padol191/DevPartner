@@ -18,7 +18,7 @@ const Tabs = ({ color }) => {
                     ? "text-white bg-" + color + "-600"
                     : "text-" + color + "-600 bg-white")
                 }
-                onClick={e => {
+                onClick={(e) => {
                   e.preventDefault();
                   setOpenTab(1);
                 }}
@@ -26,7 +26,7 @@ const Tabs = ({ color }) => {
                 href="#link1"
                 role="tablist"
               >
-                <i className="fas fa-space-shuttle text-base mr-1"></i> Profile
+                <i className="fas fa-space-shuttle text-base mr-1"></i> Settings
               </a>
             </li>
             <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
@@ -37,7 +37,7 @@ const Tabs = ({ color }) => {
                     ? "text-white bg-" + color + "-600"
                     : "text-" + color + "-600 bg-white")
                 }
-                onClick={e => {
+                onClick={(e) => {
                   e.preventDefault();
                   setOpenTab(2);
                 }}
@@ -45,7 +45,7 @@ const Tabs = ({ color }) => {
                 href="#link2"
                 role="tablist"
               >
-                <i className="fas fa-cog text-base mr-1"></i>  Settings
+                <i className="fas fa-cog text-base mr-1"></i> Project
               </a>
             </li>
             <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
@@ -56,7 +56,7 @@ const Tabs = ({ color }) => {
                     ? "text-white bg-" + color + "-600"
                     : "text-" + color + "-600 bg-white")
                 }
-                onClick={e => {
+                onClick={(e) => {
                   e.preventDefault();
                   setOpenTab(3);
                 }}
@@ -64,7 +64,7 @@ const Tabs = ({ color }) => {
                 href="#link3"
                 role="tablist"
               >
-                <i className="fas fa-briefcase text-base mr-1"></i>  Options
+                <i className="fas fa-briefcase text-base mr-1"></i> Options
               </a>
             </li>
           </ul>

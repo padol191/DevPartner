@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
-import Layout from "../components/layout";
+import Layout from "../../components/layout";
 import axios from "axios";
-import DashboardLayout from "../components/dashboardLayout";
+import DashboardLayout from "../../components/dashboardLayout";
 import Link from "next/link";
-import TabsRender from "../components/tab";
-import Showprojects from "../components/Showprojects";
+import TabsRender from "../../components/tab";
+import Showprojects from "../../components/Showprojects";
+import { useRouter } from "next/router";
 function Profile({ color }) {
   const [user, setUser] = useState(null);
 
   const [openTab, setOpenTab] = useState(1);
-
+  const router = useRouter();
+  const { id } = router.query;
   useEffect(() => {
     const fetchData = async () => {
       let token = localStorage.getItem("token");
@@ -21,7 +23,7 @@ function Profile({ color }) {
         },
       };
       const login = await axios.get(
-        "http://localhost:5000/api/auth/login",
+        `http://localhost:5000/api/profile/users/${id}`,
         config
       );
       console.log(login.data);
